@@ -23,7 +23,9 @@ function index({ data }) {
         <div className="featured-1">
           <div className="container">
             <div className="row">
-              <div className="col-lg-6 align-self-center"></div>
+              <div className="col-lg-6 align-self-center">
+                <p>hjd</p>
+              </div>
               <div className="col-lg-6 text-right d-none d-lg-block">
                 <img src="/assets/imgs/authors/featured.png" alt="" />
               </div>

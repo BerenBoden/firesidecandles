@@ -1,11 +1,11 @@
-import post from "../../data/post.json";
+import post from "../../../data/post.json";
 import Link from "next/link";
 
-function sidebarItems() {
+function sidebarItems({title}) {
   return (
     <div className="sidebar-widget widget-latest-posts mb-50 wow fadeInUp animated">
       <div className="widget-header-1 position-relative mb-30">
-        <h5 className="mt-5 mb-30">Most popular</h5>
+        <h5 className="mt-5 mb-30">{title}</h5>
       </div>
       <div className="post-block-list post-module-1">
         <ul className="list-post">

@@ -147,12 +147,7 @@ const Bottom = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="sidebar-widget widget-latest-posts mb-30 mt-20 wow fadeInUp animated d-none d-lg-block">
-                        <div className="widget-header-2 position-relative mb-30">
-                            <h5 className="mt-5 mb-30">Categories</h5>
-                        </div>
-                        <CategoryCarousel />
-                    </div>
+
                 </div>
 
             </div>

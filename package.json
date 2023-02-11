@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^4.24.4",
+    "@tanstack/react-query-devtools": "^4.24.4",
     "autoprefixer": "^10.4.13",
     "marked": "^4.2.12",
     "masonry-layout": "^4.2.2",

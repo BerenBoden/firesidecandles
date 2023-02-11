@@ -11,8 +11,12 @@ import "../public/assets/css/widgets.css";
 import "../public/assets/css/responsive.css";
 import "metismenujs/dist/metismenujs.css";
 import Layout from "../components/layout/layout";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
-function MyApp({ Component, pageProps }) {
+const queryClient = new QueryClient();
+
+function App({ Component, pageProps }) {
   const router = useRouter();
 
   useEffect(() => {
@@ -37,10 +41,13 @@ function MyApp({ Component, pageProps }) {
     };
   }, []);
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <QueryClientProvider client={queryClient}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 }
 
-export default MyApp;
+export default App;

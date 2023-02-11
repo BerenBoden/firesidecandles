@@ -4,8 +4,11 @@ module.exports = {
       {
         protocol: "https",
         hostname: "strapi-production-15df.up.railway.app",
-        port: "",
-        pathname: "/uploads/**",
+      },
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "1337",
       },
     ],
   },

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Bottom from "./bottom";
-import Search from "../elements/search";
+import Search from "../elements/articles/search";
 import Footer from "./footer";
 import Header from "./header";
 import Sidebar from "./sidebar";
@@ -30,9 +30,9 @@ const Layout = ({ children }) => {
             <Sidebar removeClass={removeClass} />
             <Header addClass={addClass} openSearch={openSearch} />
             <Search />
-
+            <div className="overflow-hidden">
             {children}
-
+            </div>
             <Bottom />
             <Footer removeClass={removeClass} />
             <BackToTop />

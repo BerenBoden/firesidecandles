@@ -1,6 +1,6 @@
 /* Normal desktop :1200px. */
 @media (min-width:1200px){
-    .container{max-width:1140px;}
+    .container{max-width:1250px;}
 }
 
 /* Normal desktop :992px. */

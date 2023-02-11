@@ -1,5 +1,5 @@
 import Link from "next/link";
-import data from "../../data/author.json"
+import data from "../../../data/author.json"
 
 function author() {
   return (

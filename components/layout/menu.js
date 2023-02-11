@@ -84,7 +84,7 @@ const Menu = () => {
                       categories.product.data.map(({ attributes, id }) => {
                         return (
                           <Link
-                            href={`/products/categories/${attributes.slug}`}
+                            href={`/shop/categories/${attributes.slug}`}
                             key={id}
                           >
                             <li className="sub-mega-menu col-span-1 cursor-pointer">

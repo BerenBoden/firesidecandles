@@ -1,4 +1,4 @@
-import post from "../../data/post.json";
+import post from "../../../data/post.json";
 import Link from "next/link";
 
 function latest() {

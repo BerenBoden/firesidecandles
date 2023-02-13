@@ -12,15 +12,9 @@ function popular({ title }) {
       </div>
       <div className="loop-list loop-list-style-1">
         <div className="row">
-          {!posts ? (
-            <div className="col-md-6">Loading...</div>
-          ) : (
-            posts.data
-              .slice(0, 4)
-              .map(({ id, attributes }) => (
-                <Card id={id} attributes={attributes} />
-              ))
-          )}
+          {posts?.data.slice(0, 4).map(({ id, attributes }) => (
+            <Card id={id} attributes={attributes} />
+          ))}
         </div>
       </div>
     </div>

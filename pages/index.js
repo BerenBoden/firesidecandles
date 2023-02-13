@@ -69,7 +69,6 @@ function index({ data }) {
                   <FeaturedImage image={featuredImage} content={featuredContent}/>
                   <SidebarItems title={"reccomended"} />
                   <SidebarItems title={"reccomended"} />
-                  <SocialItems title={"instagram"} />
                 </div>
               </div>
             </div>

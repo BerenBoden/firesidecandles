@@ -1,17 +1,10 @@
-import post from "../../../data/post.json";
 import Card from "../../core-elements/products/card";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { getProducts } from "../../../utility/api";
+import { useData } from "../../../hooks/useQueryFunc";
 
 function popular({ title }) {
-  
-  const { data, isLoading, error } = useQuery({
-    queryFn: async () =>
-      await axios.get(`${process.env.NEXT_PUBLIC_SERVER_API}/products`),
-  });
-
+  const { data, isLoading, isError } = useData(["products"], getProducts);
   const posts = data?.data;
-
   return (
     <div>
       <div className="widget-header-1 position-relative mb-30  wow fadeInUp animated">
@@ -22,7 +15,11 @@ function popular({ title }) {
           {!posts ? (
             <div className="col-md-6">Loading...</div>
           ) : (
-            posts.data.slice(0, 4).map(({id, attributes}) => <Card id={id} attributes={attributes} />)
+            posts.data
+              .slice(0, 4)
+              .map(({ id, attributes }) => (
+                <Card id={id} attributes={attributes} />
+              ))
           )}
         </div>
       </div>

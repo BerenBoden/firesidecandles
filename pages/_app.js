@@ -19,6 +19,25 @@ const queryClient = new QueryClient();
 function App({ Component, pageProps }) {
   const router = useRouter();
 
+  // const {
+  //   isLoading,
+  //   error,
+  //   data: categoryData,
+  // } = useQuery({
+  //   queryFn: async () => {
+  //     const allCategories = await Promise.all(
+  //       content.map(async (item) => {
+  //         const res = await axios.get(
+  //           `${process.env.NEXT_PUBLIC_SERVER_API}/identifiers?start=0&limit=-1&content=${item}&identifier=categories`
+  //         );
+  //         const categories = await res.data;
+  //         return { [item]: categories };
+  //       })
+  //     );
+  //     return allCategories.reduce((acc, curr) => ({ ...acc, ...curr }), {});
+  //   },
+  // });
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       window.WOW = require("wowjs");

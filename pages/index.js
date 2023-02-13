@@ -1,17 +1,17 @@
 import SocialItems from "../components/elements/articles/socialItems";
 import Popular from "../components/elements/products/popular";
 import SidebarItems from "../components/elements/articles/sidebarItems";
-import FeatureImage from "../components/elements/products/featureImage";
-import Latest from "../components/elements/articles/latest";
+import FeaturedImage from "../components/core-elements/featuredImage";
+import Latest from "../components/elements/products/latest";
 import { parse } from "marked";
-import axios from 'axios';
+import axios from "axios";
 import Image from "next/image";
 
 export async function getStaticProps() {
-  const {data} = await axios.get(
+  const { data } = await axios.get(
     `${process.env.NEXT_PUBLIC_SERVER_API}/page-content/home`
   );
- 
+
   return {
     props: {
       data,
@@ -20,8 +20,8 @@ export async function getStaticProps() {
 }
 
 function index({ data }) {
-  const hero_image =
-    data.data.attributes.hero_image.data.attributes.formats.large.url;
+  const {featuredImage, featuredContent, heroImage, heroContent} = data;
+
   return (
     <>
       <main>
@@ -30,10 +30,10 @@ function index({ data }) {
             <div className="row">
               <div className="flex items-center text-white h-128">
                 <div
-                  className="col-lg-6 z-10"
+                  className="col-lg-6 text-xs z-10"
                   dangerouslySetInnerHTML={{
                     __html: `${parse(
-                      data.data.attributes.hero_content
+                      heroContent
                     )}<button class="z-10 border-black bg-black py-3 px-5">Shop Now</button>`,
                   }}
                 ></div>
@@ -46,7 +46,7 @@ function index({ data }) {
                     style={{ background: "#593529" }}
                   ></div>
                   <Image
-                    src={`${process.env.NEXT_PUBLIC_STRAPI_API}${hero_image}`}
+                    src={`${process.env.NEXT_PUBLIC_STRAPI_API}${heroImage}`}
                     className="opacity-40 absolute object-cover right-0 object-right lg:w-1/2 w-full h-128"
                     height={480}
                     width={1000}
@@ -66,7 +66,7 @@ function index({ data }) {
               </div>
               <div className="col-lg-6">
                 <div className="widget-area">
-                  <FeatureImage />
+                  <FeaturedImage image={featuredImage} content={featuredContent}/>
                   <SidebarItems title={"reccomended"} />
                   <SidebarItems title={"reccomended"} />
                   <SocialItems title={"instagram"} />

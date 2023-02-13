@@ -2,17 +2,21 @@ import Link from "next/link";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { useRouter } from "next/router";
 import NavMenu from "./nav";
-import useCategories from "../../hooks/useCategories";
-
-const content = ["article", "product"];
+import { useData } from "../../hooks/useQueryFunc";
+import { getIdentifiers } from "../../utility/api";
 
 const Menu = () => {
   const [scroll, setScroll] = useState(0);
   const [isToggled, setToggled] = useState(false);
   const [size, setSize] = useState(0);
   const router = useRouter();
-  const categories = useCategories(content);
 
+  const {
+    data: categoryData,
+    isLoading,
+    isError,
+  } = useData(["identifiers"], getIdentifiers);
+  
   const toggleTrueFalse = () => setToggled(!isToggled);
   useEffect(() => {
     document.addEventListener("scroll", () => {
@@ -50,41 +54,11 @@ const Menu = () => {
                     <a>Articles</a>
                   </Link>
                   <ul className="mega-menu grid grid-cols-5 gap-4 p-4">
-                    {categories.article &&
-                      categories.article.data.map(
-                        ({ attributes, id }, index) => {
-                          return (
-                            <Link
-                              href={`/articles/categories/${attributes.slug}`}
-                              key={id}
-                            >
-                              <li className="sub-mega-menu col-span-1 cursor-pointer">
-                                <div className="">
-                                  <p className="font-bold capitalize">
-                                    {attributes.name}
-                                  </p>
-
-                                  <p className="text-xs capitalize">
-                                    {attributes.meta_description}
-                                  </p>
-                                </div>
-                              </li>
-                            </Link>
-                          );
-                        }
-                      )}
-                  </ul>
-                </li>
-                <li className="has-mega-menu">
-                  <Link href="/shop">
-                    <a>Shop</a>
-                  </Link>
-                  <ul className="mega-menu grid grid-cols-5 gap-4 p-4">
-                    {categories.product &&
-                      categories.product.data.map(({ attributes, id }) => {
+                    {categoryData?.article?.data.map(
+                      ({ attributes, id }, index) => {
                         return (
                           <Link
-                            href={`/shop/categories/${attributes.slug}`}
+                            href={`/articles/categories/${attributes.slug}`}
                             key={id}
                           >
                             <li className="sub-mega-menu col-span-1 cursor-pointer">
@@ -100,7 +74,35 @@ const Menu = () => {
                             </li>
                           </Link>
                         );
-                      })}
+                      }
+                    )}
+                  </ul>
+                </li>
+                <li className="has-mega-menu">
+                  <Link href="/shop">
+                    <a>Shop</a>
+                  </Link>
+                  <ul className="mega-menu grid grid-cols-5 gap-4 p-4">
+                    {categoryData?.product?.data.map(({ attributes, id }) => {
+                      return (
+                        <Link
+                          href={`/shop/categories/${attributes.slug}`}
+                          key={id}
+                        >
+                          <li className="sub-mega-menu col-span-1 cursor-pointer">
+                            <div className="">
+                              <p className="font-bold capitalize">
+                                {attributes.name}
+                              </p>
+
+                              <p className="text-xs capitalize">
+                                {attributes.meta_description}
+                              </p>
+                            </div>
+                          </li>
+                        </Link>
+                      );
+                    })}
                   </ul>
                 </li>
                 <li
@@ -121,7 +123,11 @@ const Menu = () => {
                 </li>
               </ul>
 
-              <div className={`cursor-pointer ${size < 991 ? "d-block d-lg-none" : "d-none"}`}>
+              <div
+                className={`cursor-pointer ${
+                  size < 991 ? "d-block d-lg-none" : "d-none"
+                }`}
+              >
                 <button onClick={toggleTrueFalse} className={`cursor-pointer`}>
                   <i className="elegant-icon icon_menu text-3xl"></i>
                 </button>

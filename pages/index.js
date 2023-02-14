@@ -1,6 +1,5 @@
-import SocialItems from "../components/elements/articles/socialItems";
 import Popular from "../components/elements/products/popular";
-import SidebarItems from "../components/elements/articles/sidebarItems";
+import SidebarItems from "../components/elements/products/sidebarItems";
 import FeaturedImage from "../components/core-elements/featuredImage";
 import Latest from "../components/elements/products/latest";
 import { parse } from "marked";

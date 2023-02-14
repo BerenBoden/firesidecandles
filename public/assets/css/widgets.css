@@ -438,10 +438,7 @@ span.has-dot::before {
     bottom: 0;
     transition-duration: 0.2s;
 }
-.post-module-1 .post-thumb {
-    -webkit-box-shadow: 4px 4px 0 var(--bg-gray);
-    box-shadow: 4px 4px 0 var(--color-grey);
-}
+
 .post-module-1 .post-thumb:hover .post-content-overlay {
     bottom: 5px;
 }

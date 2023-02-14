@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 
+
 function card({ id, attributes }) {
   const image_header =
     attributes.image_header.data.attributes.formats.large.url;
 
   return (
-    <div key={id} className="col-md-6">
+    <div key={id} className="col-md-6 mb-4">
       <Link href={`/shop/${attributes?.slug}`}>
         <div className="h-128 cursor-pointer">
           <div className="relative h-3/4">
@@ -38,6 +39,7 @@ function card({ id, attributes }) {
               <h5 className="capitalize text-lg font-thin h-1/2">
                 {attributes.title}
               </h5>
+              <p className="text-xs">{attributes.reviews || 'no reviews'}</p>
               <p className="text-xs">{attributes.description}</p>
               <p className="text-xs">${attributes.price}</p>
             </div>

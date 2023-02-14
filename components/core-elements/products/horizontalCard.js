@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import Image from "next/image";
 
 function horizontalCard({ id, attributes }) {
@@ -30,12 +29,10 @@ function horizontalCard({ id, attributes }) {
             <p>{attributes.description}</p>
             <p className="text-xs">{attributes.price}</p>
             <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
-              <span className="post-on">{attributes.createdAt}</span>
-              <span className="post-by has-dot">100 views</span>
+              <p className="text-xs">{attributes.reviews || "no reviews"}</p>
             </div>
           </div>
         </div>
-        
       </div>
     </article>
   );

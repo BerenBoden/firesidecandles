@@ -1,10 +1,6 @@
-import Card from "../../core-elements/products/card";
-import { getProducts } from "../../../utility/api";
-import { useData } from "../../../hooks/useQueryFunc";
+import Card from "../core-elements/products/card";
 
-function popular({ title }) {
-  const { data, isLoading, isError } = useData(["products"], getProducts);
-  const posts = data?.data;
+function popular({ content, title }) {
   return (
     <div>
       <div className="widget-header-1 position-relative mb-30  wow fadeInUp animated">
@@ -12,7 +8,7 @@ function popular({ title }) {
       </div>
       <div className="loop-list loop-list-style-1">
         <div className="row">
-          {posts?.data.slice(0, 4).map(({ id, attributes }) => (
+          {content?.slice(0, 4).map(({ id, attributes }) => (
             <Card id={id} attributes={attributes} />
           ))}
         </div>

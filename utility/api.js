@@ -6,8 +6,20 @@ export function getProducts() {
   return axios.get(`${process.env.NEXT_PUBLIC_SERVER_API}/products`);
 }
 
+export async function getArticles() {
+  return axios.get(`${process.env.NEXT_PUBLIC_SERVER_API}/articles`);
+}
+
+export async function getArticleTags() {
+  return axios.get(
+    `${process.env.NEXT_PUBLIC_SERVER_API}/identifiers?start=0&limit=-1&content=article&identifier=tags`
+  );
+}
+
 export async function getPopularIdentifiers() {
-  return axios.get(`${process.env.NEXT_PUBLIC_SERVER_API}/identifiers?start=0&limit=3&content=product&identifier=categories&related=true`)
+  return axios.get(
+    `${process.env.NEXT_PUBLIC_SERVER_API}/identifiers?start=0&limit=3&content=product&identifier=categories&related=true`
+  );
 }
 
 export async function getIdentifiers() {

@@ -10,15 +10,13 @@ function horizontalCardThin({ id, attributes }) {
       <li className="mb-10 wow fadeInUp animated cursor-pointer">
         <div className="d-flex bg-white p-4 hover-up transition-normal shadow-sm">
           <div className="post-content media-body">
-            <h6 className="capitalize text-lg">
-              {attributes.title}
-            </h6>
-            <div className="flex flex-col">
-              <p className="text-xs">{attributes.createdAt}</p>
-              <p className="text-xs">{attributes.reviews}</p>
-              <p className="text-xs">
-                {attributes.price}
-              </p>
+            <h6 className="capitalize text-lg">{attributes.title}</h6>
+            <div className="w-64">
+              <p>{attributes.description}</p>
+              <p className="text-xs">{attributes.price}</p>
+              <div className="entry-meta meta-1 float-left font-x-small text-uppercase">
+                <p className="text-xs">{attributes.reviews || "no reviews"}</p>
+              </div>
             </div>
           </div>
           <div className="post-thumb post-thumb-80 d-flex ml-15 border-radius-5 img-hover-scale overflow-hidden">

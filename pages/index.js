@@ -1,25 +1,30 @@
-import Popular from "../components/elements/products/popular";
-import SidebarItems from "../components/elements/products/sidebarItems";
+import Popular from "../components/elements/popular";
+import SidebarItems from "../components/elements/sidebarItems";
 import FeaturedImage from "../components/core-elements/featuredImage";
-import Latest from "../components/elements/products/latest";
+import Latest from "../components/elements/latest";
 import { parse } from "marked";
 import axios from "axios";
 import Image from "next/image";
+import { getProducts } from ".././utility/api";
+import { useData } from "../hooks/useQueryFunc";
 
 export async function getStaticProps() {
-  const { data } = await axios.get(
+  const { data: content } = await axios.get(
     `${process.env.NEXT_PUBLIC_SERVER_API}/page-content/home`
   );
 
   return {
     props: {
-      data,
+      content,
     },
   };
 }
 
-function index({ data }) {
-  const {featuredImage, featuredContent, heroImage, heroContent} = data;
+function index({ content }) {
+  const { featuredImage, featuredContent, heroImage, heroContent } = content;
+
+  const { data: productData } = useData(["products"], getProducts);
+  const products = productData?.data.data;
 
   return (
     <>
@@ -56,18 +61,30 @@ function index({ data }) {
           </div>
         </div>
 
-        <div className={` pt-50 pb-50`}>
+        <div className={`pt-50 pb-50`}>
           <div className="container">
             <div className="row">
               <div className="col-lg-6">
-                <Popular title={"Popular products"} />
-                <Latest />
+                <Popular content={products} title="popular products" />
+                <Latest
+                  content={products}
+                  title="featured products"
+                />
               </div>
               <div className="col-lg-6">
                 <div className="widget-area">
-                  <FeaturedImage image={featuredImage} content={featuredContent}/>
-                  <SidebarItems title={"reccomended"} />
-                  <SidebarItems title={"reccomended"} />
+                  <FeaturedImage
+                    image={featuredImage}
+                    content={featuredContent}
+                  />
+                  <SidebarItems
+                    content={products}
+                    title="reccomended products"
+                  />
+                  <SidebarItems
+                    content={products}
+                    title="limited products"
+                  />
                 </div>
               </div>
             </div>
